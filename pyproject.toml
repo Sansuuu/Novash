@@ -1,0 +1,64 @@
+[build-system]
+# Modern setuptools-based build backend, as required.
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "novash"
+version = "0.1.0"
+description = "Open-source SEO checker for websites"
+authors = [
+    { name = "Sanskar Garg" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["seo", "cli", "website-audit", "seo-checker", "web-crawler"]
+classifiers = [
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Internet :: WWW/HTTP :: Site Management",
+]
+
+# Runtime dependencies needed for crawling, parsing, and the CLI's
+# colored/interactive output.
+dependencies = [
+    "requests",
+    "beautifulsoup4",
+    "rich",
+    "typer",
+]
+
+[project.scripts]
+# Installs a `novash` command on the user's PATH. Running
+# `novash scan <url>` calls the main() function in cli.py, which
+# launches the Typer app.
+novash = "cli:main"
+
+[tool.setuptools]
+# The project currently ships as a flat set of top-level modules
+# (cli.py, crawler.py, checks.py, etc.) rather than a nested
+# novash/ package directory, so we list them explicitly as
+# py-modules instead of using automatic package discovery.
+py-modules = [
+    "cli",
+    "crawler",
+    "checks",
+    "score",
+    "report",
+    "main",
+    "exporter",
+    "suggestions",
+    "robots_checker",
+    "sitemap_checker",
+    "og_checker",
+    "link_checker",
+    "html_exporter",
+    "canonical_checker",
+    "twitter_checker",
+    "schema_checker",
+    "favicon_checker",
+]
